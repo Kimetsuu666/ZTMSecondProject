@@ -18,6 +18,7 @@ export function Navigation() {
                     </Link>
                 </div>
             </div>
+            {/* Special component that takes element by url and set instead of itself */}
             <Outlet />
         </>
     );
