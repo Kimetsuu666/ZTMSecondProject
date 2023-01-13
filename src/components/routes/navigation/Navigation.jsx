@@ -4,9 +4,13 @@ import './navigation.scss'
 import { useContext } from 'react';
 import { UserContext } from '../../../contexts/UserContext';
 import { signOutUser } from '../../../utils/firebase/firebase';
+import { CartIcon } from '../../cart-icon/CartIcon';
+import { CartDropDown } from '../../cart-dropdown/CartDropDown';
+import { CartContext } from '../../../contexts/CartContext';
 
 export function Navigation() {
     const { currentUser } = useContext(UserContext);
+    const { isCartOpen } = useContext(CartContext);
 
     return (
         <>
@@ -25,7 +29,9 @@ export function Navigation() {
                             SIGN IN
                         </Link>)
                     }
+                    <CartIcon />
                 </div>
+                {isCartOpen && <CartDropDown/>}
             </div>
             {/* Special component that takes element by url and set instead of itself */}
             <Outlet />

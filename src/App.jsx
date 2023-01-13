@@ -2,6 +2,7 @@ import Home from './components/routes/home/Home';
 import { Route, Routes } from 'react-router-dom';
 import { Navigation } from './components/routes/navigation/Navigation';
 import { Auth } from './components/routes/auth/Auth';
+import { Shop } from './components/routes/shop/Shop';
 
 
 export default function App() {
@@ -9,6 +10,7 @@ export default function App() {
         <Routes>
             <Route path='/' element={<Navigation />}>
                 <Route index element={<Home />} />
+                <Route path='shop' element={<Shop />} />
                 <Route path='auth' element={<Auth />} />
             </Route>
         </Routes>
