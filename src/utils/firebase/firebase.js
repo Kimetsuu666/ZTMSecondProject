@@ -15,7 +15,9 @@ import {
 	getDoc,
 	setDoc,
 	collection,
-	writeBatch
+	writeBatch,
+	query,
+	getDocs
 } from 'firebase/firestore';
 
 
@@ -49,7 +51,11 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 // Ref on Firebase db
 export const db = getFirestore();
 
+
+// Method for adding collections
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+	// db/collection ke
+	// batch is a special func for taking all objects in itself and after commit to Firestore
 	const collectionRef = collection(db, collectionKey);
 	const batch = writeBatch(db);
 
@@ -59,7 +65,21 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
 	})
 
 	await batch.commit();
-	console.log('done');
+}
+
+export const getCategoriesAndDocuments = async () => {
+	const collectionRef = collection(db, 'categories');
+	const q = query(collectionRef);
+
+	const querySnapshot = await getDocs(q);
+	const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+		const { title, items } = docSnapshot.data();
+		acc[title.toLowerCase()] = items;
+
+		return acc;
+	}, {});
+
+	return categoryMap;
 }
 
 // Method for creating user document
