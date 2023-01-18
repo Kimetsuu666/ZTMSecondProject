@@ -1,12 +1,12 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { ReactComponent as CrownLogo } from '../../../assets/crown.svg';
-import './navigation.scss'
 import { useContext } from 'react';
 import { UserContext } from '../../../contexts/UserContext';
 import { signOutUser } from '../../../utils/firebase/firebase';
 import { CartIcon } from '../../cart-icon/CartIcon';
 import { CartDropDown } from '../../cart-dropdown/CartDropDown';
 import { CartContext } from '../../../contexts/CartContext';
+import { LogoContainer, NavigationContainer, NavLink, NavLinks } from './NavigationStyles';
 
 export function Navigation() {
     const { currentUser } = useContext(UserContext);
@@ -14,25 +14,20 @@ export function Navigation() {
 
     return (
         <>
-            <div className='navigation'>
-                <Link to='/' className='logo-container'>
+            <NavigationContainer>
+                <LogoContainer to='/'>
                     <CrownLogo className='logo' />
-                </Link>
-                <div className='nav-links-container'>
-                    <Link to='/shop' className='nav-link'>
-                        SHOP
-                    </Link>
+                </LogoContainer>
+                <NavLinks>
+                    <NavLink to='/shop'>SHOP</NavLink>
                     {currentUser
-                        ? (<span className='nav-link' onClick={signOutUser}>SIGN OUT</span>)
-                        : (
-                        <Link to='/auth' className='nav-link'>
-                            SIGN IN
-                        </Link>)
+                        ? (<NavLink as='span' onClick={signOutUser}>SIGN OUT</NavLink>)
+                        : (<NavLink to='/auth'>SIGN IN</NavLink>)
                     }
                     <CartIcon />
-                </div>
+                </NavLinks>
                 {isCartOpen && <CartDropDown/>}
-            </div>
+            </NavigationContainer>
             {/* Special component that takes element by url and set instead of itself */}
             <Outlet />
         </>
