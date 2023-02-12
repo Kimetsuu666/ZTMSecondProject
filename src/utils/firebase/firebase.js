@@ -81,7 +81,6 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
 	const userDocRef = doc(db, 'users', userAuth.uid);
 
 	const userSnapshot = await getDoc(userDocRef);
-
 	if (!userSnapshot.exists()) {
 		const { displayName, email } = userAuth;
 		const createdAt = new Date();
@@ -97,8 +96,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
 			console.log('error creating the user', error.message);
 		}
 	}
-
-	return userDocRef;
+	return userSnapshot;
 };
 
 // Method for creating user by email and password
@@ -117,3 +115,12 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+
+export const getCurrentUser = () => {
+	return new Promise((resolve, reject) => {
+		const unsubscribe = onAuthStateChanged(auth, (userAuth) => {
+			unsubscribe();
+			resolve(userAuth);
+		}, reject);
+	})
+}
