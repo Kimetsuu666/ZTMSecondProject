@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { FormInput } from '../form-input/FormInput';
-import './sign-in-form.scss';
 import { Button, BUTTON_TYPES } from '../button/Button';
 import { useDispatch } from 'react-redux';
 import { emailSignInStart, googleSignInStart } from '../../store/user/userActions';
+import { ButtonContainer, SignInContainer } from './SignInStyles';
 
 const defaultFormFields = {
 	email: '',
@@ -49,7 +49,7 @@ export function SignInForm() {
     };
 
 	return (
-		<div className='sign-up-container'>
+		<SignInContainer>
 			<h2>Already have an account?</h2>
 			<span>Sign in with your email and password</span>
 			<form autoSave={true.toString()} onSubmit={handleSubmit}>
@@ -71,14 +71,14 @@ export function SignInForm() {
 					name='password'
 					value={password}
 				/>
-				<div className='buttons-container'>
+				<ButtonContainer>
 					<Button type='submit'>Sign in</Button>
 					<Button
 						type='button'
 						buttonType={BUTTON_TYPES.google}
 						onClick={signInWithGoogle}>Google sign in</Button>
-				</div>
+				</ButtonContainer>
 			</form>
-		</div>
+		</SignInContainer>
 	);
 }

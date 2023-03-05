@@ -1,12 +1,12 @@
 import { SignUpForm } from '../../sign-up-form/SignUpForm';
 import { SignInForm } from '../../sign-in-form/SignInForm';
-import './auth.scss';
+import { AuthContainer } from './AuthStyles';
 
 export function Auth() {
     return (
-        <div className='auth-container'>
+        <AuthContainer>
             <SignInForm />
             <SignUpForm />
-        </div>
+        </AuthContainer>
     );
 }

@@ -1,8 +1,8 @@
-import './product.scss'
 import { Button, BUTTON_TYPES } from '../button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart } from '../../store/cart/cartActions';
 import { selectCartItems } from '../../store/cart/cartSelector';
+import { Footer, Name, Price, ProductCardContainer } from './ProductCardStyles';
 
 export function ProductCard({ product }) {
 	const dispatch = useDispatch();
@@ -11,13 +11,13 @@ export function ProductCard({ product }) {
 	const addProductToCart = () => dispatch(addItemToCart(cartItems, product))
 
 	return (
-		<div className='product-card-container'>
+		<ProductCardContainer>
 			<img src={product.imageUrl} alt={product.name} />
-			<div className='footer'>
-				<span className='name'>{product.name}</span>
-				<span className='price'>{product.price}</span>
-			</div>
+			<Footer>
+				<Name>{product.name}</Name>
+				<Price>{product.price}</Price>
+			</Footer>
 			<Button buttonType={BUTTON_TYPES.inverted} onClick={addProductToCart} >Add to cart</Button>
-		</div>
+		</ProductCardContainer>
 	);
 }

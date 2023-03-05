@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { FormInput } from '../form-input/FormInput';
-import './sign-up-form.scss';
 import { Button } from '../button/Button';
 import { useDispatch } from 'react-redux';
 import { signUpStart } from '../../store/user/userActions';
+import { SignUpContainer } from './SignUpStyles';
 
 const defaultFormFields = {
 	displayName: '',
@@ -45,7 +45,7 @@ export function SignUpForm() {
     };
 
 	return (
-		<div className='sign-up-container'>
+		<SignUpContainer>
 			<h2>Don't have an account?</h2>
 			<span>Sign up with your email and password</span>
 			<form autoSave={true.toString()} onSubmit={handleSubmit}>
@@ -86,6 +86,6 @@ export function SignUpForm() {
 				/>
 				<Button type='submit'>Sign up</Button>
 			</form>
-		</div>
+		</SignUpContainer>
 	);
 }

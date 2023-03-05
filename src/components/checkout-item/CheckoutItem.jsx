@@ -1,7 +1,7 @@
-import './checkout-item.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCartItems } from '../../store/cart/cartSelector';
 import { addItemToCart, clearItemFromCart, removeItemFromCart } from '../../store/cart/cartActions';
+import { Arrow, CheckoutItemWrapper, ImageContainer, Info, Quantity, RemoveButton } from './CheckoutItemStyles';
 
 export function CheckoutItem({ cartItem }) {
 	const cartItems = useSelector(selectCartItems);
@@ -12,18 +12,18 @@ export function CheckoutItem({ cartItem }) {
 	const removeItemHandler = () => dispatch(removeItemFromCart(cartItems ,cartItem));
 
 	return (
-		<div className='checkout-item-container'>
-			<div className='image-container'>
+		<CheckoutItemWrapper>
+			<ImageContainer>
 				<img src={cartItem.imageUrl} alt={cartItem.name} />
-			</div>
-			<span className='name'>{cartItem.name}</span>
-			<span className='quantity'>
-				<div className='arrow' onClick={removeItemHandler}>&#10094;</div>
-				<span className='value'>{cartItem.quantity}</span>
-				<div className='arrow' onClick={addItemHandler}>&#10095;</div>
-			</span>
-			<span className='price'>{cartItem.price}</span>
-			<div className='remove-button' onClick={clearItemHandler}>&#10005;</div>
-		</div>
+			</ImageContainer>
+			<Info>{cartItem.name}</Info>
+			<Quantity>
+				<Arrow onClick={removeItemHandler}>&#10094;</Arrow>
+				<span style={{ margin: '0 10px' }}>{cartItem.quantity}</span>
+				<Arrow onClick={addItemHandler}>&#10095;</Arrow>
+			</Quantity>
+			<Info>{cartItem.price}</Info>
+			<RemoveButton onClick={clearItemHandler}>&#10005;</RemoveButton>
+		</CheckoutItemWrapper>
 	);
 }
