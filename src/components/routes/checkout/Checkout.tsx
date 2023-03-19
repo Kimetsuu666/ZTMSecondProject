@@ -4,7 +4,7 @@ import { selectCartItems, selectCartTotal } from '../../../store/cart/cartSelect
 import { PaymentForm } from '../../payment-form/PaymentForm';
 import { CheckoutContainer, CheckoutHeader, HeaderBlock, Total } from './CheckoutStyles';
 
-export function Checkout() {
+export default function Checkout() {
 	const cartItems = useSelector(selectCartItems);
 	const total = useSelector(selectCartTotal);
 

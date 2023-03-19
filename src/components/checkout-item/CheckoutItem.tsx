@@ -3,12 +3,13 @@ import { selectCartItems } from '../../store/cart/cartSelector';
 import { addItemToCart, clearItemFromCart, removeItemFromCart } from '../../store/cart/cartActions';
 import { Arrow, CheckoutItemWrapper, ImageContainer, Info, Quantity, RemoveButton } from './CheckoutItemStyles';
 import { CartItem } from '../../store/cart/cartTypes';
+import { memo } from 'react';
 
 type CheckoutItemProps = {
 	cartItem: CartItem
 }
 
-export function CheckoutItem({ cartItem }: CheckoutItemProps) {
+export const CheckoutItem = memo(({ cartItem }: CheckoutItemProps) => {
 	const cartItems = useSelector(selectCartItems);
 	const dispatch = useDispatch();
 
@@ -31,4 +32,4 @@ export function CheckoutItem({ cartItem }: CheckoutItemProps) {
 			<RemoveButton onClick={clearItemHandler}>&#10005;</RemoveButton>
 		</CheckoutItemWrapper>
 	);
-}
+})

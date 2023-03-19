@@ -8,7 +8,7 @@ import { userSelector } from '../../../store/user/userSelector';
 import { selectIsCartOpen } from '../../../store/cart/cartSelector';
 import { signOutStart } from '../../../store/user/userActions';
 
-export function Navigation() {
+export default function Navigation() {
     const { currentUser } = useSelector(userSelector);
     const isCartOpen = useSelector(selectIsCartOpen)
     const dispatch = useDispatch();
