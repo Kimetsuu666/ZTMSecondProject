@@ -2,7 +2,7 @@ import { SignUpForm } from '../../sign-up-form/SignUpForm';
 import { SignInForm } from '../../sign-in-form/SignInForm';
 import { AuthContainer } from './AuthStyles';
 
-export default function Auth() {
+function Auth() {
     return (
         <AuthContainer>
             <SignInForm />
@@ -10,3 +10,5 @@ export default function Auth() {
         </AuthContainer>
     );
 }
+
+export default Auth

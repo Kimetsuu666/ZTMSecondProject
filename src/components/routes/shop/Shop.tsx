@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCategoriesStart } from '../../../store/categories/categoryActions';
 
-export function Shop() {
+function Shop() {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -19,3 +19,5 @@ export function Shop() {
 		</Routes>
 	);
 }
+
+export default Shop;

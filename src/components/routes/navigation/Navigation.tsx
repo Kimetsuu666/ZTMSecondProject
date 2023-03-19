@@ -8,7 +8,7 @@ import { userSelector } from '../../../store/user/userSelector';
 import { selectIsCartOpen } from '../../../store/cart/cartSelector';
 import { signOutStart } from '../../../store/user/userActions';
 
-export default function Navigation() {
+function Navigation() {
     const { currentUser } = useSelector(userSelector);
     const isCartOpen = useSelector(selectIsCartOpen)
     const dispatch = useDispatch();
@@ -36,3 +36,5 @@ export default function Navigation() {
         </>
     );
 }
+
+export default Navigation
